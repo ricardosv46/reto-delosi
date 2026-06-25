@@ -12,11 +12,13 @@ import { filterAndSortProducts } from '../../application/use-cases/filterAndSort
 interface ProductCatalogViewProps {
   initialProducts: Product[];
   categories: string[];
+  hasLoadError?: boolean;
 }
 
 export const ProductCatalogView: React.FC<ProductCatalogViewProps> = ({
   initialProducts,
   categories,
+  hasLoadError = false,
 }) => {
   const { search, category, sortBy, setSearch, setCategory, setSortBy } = useProductFilterParams();
 
@@ -75,7 +77,17 @@ export const ProductCatalogView: React.FC<ProductCatalogViewProps> = ({
       </div>
 
       {/* Products Grid */}
-      {processedProducts.length === 0 ? (
+      {hasLoadError ? (
+        <div className="py-16 text-center rounded-xl border border-dashed border-destructive/40 bg-destructive/5 space-y-2">
+          <p className="text-sm font-semibold text-foreground">
+            No pudimos cargar el catálogo en este momento
+          </p>
+          <p className="text-xs text-muted-foreground max-w-md mx-auto">
+            El proveedor de datos no respondió correctamente. Por favor, recarga la página en unos
+            instantes.
+          </p>
+        </div>
+      ) : processedProducts.length === 0 ? (
         <div className="py-16 text-center rounded-xl border border-dashed border-border/80 space-y-2">
           <p className="text-sm font-semibold text-foreground">No encontramos coincidencias</p>
           <p className="text-xs text-muted-foreground">

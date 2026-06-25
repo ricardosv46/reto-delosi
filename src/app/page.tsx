@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { productRepository } from '@/modules/products/infrastructure/composition/container';
 import { ProductCatalogView } from '@/modules/products/presentation/views/ProductCatalogView';
 import { CatalogSkeleton } from '@/modules/products/presentation/components/CatalogSkeleton';
+import { Product } from '@/modules/products/domain/models/Product.model';
 
 export const revalidate = 3600;
 
@@ -27,10 +28,25 @@ export default function Page() {
 }
 
 async function CatalogData() {
-  const [products, categories] = await Promise.all([
-    productRepository.getProducts(),
-    productRepository.getCategories(),
-  ]);
+  let products: Product[] = [];
+  let categories: string[] = [];
+  let hasLoadError = false;
 
-  return <ProductCatalogView initialProducts={products} categories={categories} />;
+  try {
+    [products, categories] = await Promise.all([
+      productRepository.getProducts(),
+      productRepository.getCategories(),
+    ]);
+  } catch (error) {
+    console.error('Error loading catalog data:', error);
+    hasLoadError = true;
+  }
+
+  return (
+    <ProductCatalogView
+      initialProducts={products}
+      categories={categories}
+      hasLoadError={hasLoadError}
+    />
+  );
 }
