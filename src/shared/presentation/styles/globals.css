@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+:root {
+  --background: 222 47% 6%;
+  /* Deep Slate Black */
+  --foreground: 210 40% 98%;
+  /* Off-White */
+
+  --primary: 160 84% 39%;
+  /* Vibrant Emerald */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 38 92% 50%;
+  /* Champagne Gold / Amber */
+  --secondary-foreground: 222 47% 6%;
+
+  --card: 222 47% 8%;
+  /* Slightly Lighter Slate for Cards */
+  --card-foreground: 210 40% 98%;
+
+  --border: 217 33% 14%;
+  /* Subtle Slate Borders */
+  --muted: 217 33% 18%;
+  /* Muted Slate backgrounds */
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 263 70% 50%;
+  /* Deep Electric Purple */
+  --accent-foreground: 210 40% 98%;
+}
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --font-display: var(--font-display), serif;
+  --font-sans: var(--font-sans), sans-serif;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(11, 15, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted));
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
