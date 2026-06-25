@@ -11,7 +11,7 @@ export class ApiProductRepository implements ProductRepository {
       return response.data;
     } catch (error) {
       console.error('Error in ApiProductRepository.getProducts:', error);
-      throw new Error('No se pudieron cargar los productos desde FakeStoreAPI.');
+      return [];
     }
   });
 
@@ -21,7 +21,7 @@ export class ApiProductRepository implements ProductRepository {
       return response.data ?? null;
     } catch (error) {
       console.error(`Error in ApiProductRepository.getProductById(${id}):`, error);
-      throw new Error(`No se pudo cargar el producto ${id} desde FakeStoreAPI.`);
+      return null;
     }
   });
 
@@ -31,7 +31,7 @@ export class ApiProductRepository implements ProductRepository {
       return response.data;
     } catch (error) {
       console.error('Error in ApiProductRepository.getCategories:', error);
-      throw new Error('No se pudieron cargar las categorías desde FakeStoreAPI.');
+      return [];
     }
   });
 }
