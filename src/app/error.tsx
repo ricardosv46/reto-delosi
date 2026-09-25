@@ -25,7 +25,7 @@ export default function Error({
         </h2>
         <p className="text-xs text-muted-foreground max-w-xs mx-auto leading-relaxed">
           Ha ocurrido un error al cargar la información de FakeStoreAPI o procesar la UI. Por favor,
-          reintenta la operación.
+          reintenta la operación más tarde.
         </p>
       </div>
       <button
